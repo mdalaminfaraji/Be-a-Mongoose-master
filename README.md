@@ -482,5 +482,179 @@
 ### What is a module
 A module is an isolated and resuable block of code that has its own scope
 
+#### Modular System
+- Node js Now supports ESM Module(`version>=14`)
+
+|----------commonjs------|------esm---------|
+|       require         |       Import       |
+|       export/module.exports | export default |
+|       .js             |       .mjs            |
+
+- -----------------------------------------------
+
+- Local Modules`we create`
+- Built in modules `come with node.js`
+- Third party modules `created by others`
+
+```js
+
+Module {
+  id: '.',
+  path: 'E:\\Be-a-Mongoose-Master',
+  exports: {},
+  filename: 'E:\\Be-a-Mongoose-Master\\local-1.js',
+  loaded: false,
+  children: [],
+  paths: [ 'E:\\Be-a-Mongoose-Master\\node_modules', 'E:\\node_modules' ]
+}
+
+```
+
+
+### local Modules:
+- local-1.js
+```js
+        const add =(param1, param2)=>param1+ param2;
+        const a=10;
+        module.exports={
+                a,
+                add
+        };
+        console.log(module);
+
+```
+
+- local-1.js
+```js
+        const add =(param1, param2, param3)=>param1+ param2+param3;
+        const a=10;
+        module.exports={
+                a,
+                add
+        };
+```
+
+- index.js
+```js
+        const {a, add}=require('./local-1');
+        const {a:a2, add:add2}=require('./local-2');
+
+
+
+        console.log(add2(3,4, 5 ));
+
+```
+
+### built-in module
+
+```js
+const path = require("path")
+console.log(path.join("/E:/Be-a-Mongoose-Master/", "local-1.js"));
+console.log(path.parse("/E:/Be-a-Mongoose-Master/index.js"));
+
+```
+
+### synchronous is a blocking behaviour akter poer akta kore kaj
+
+
+### asynchronous away te kaj kore node js ----> single threaded theke ---> thread pool ar kache pathai
+- Example:
+```js
+const fs = require("fs");
+
+// reading text asynchronously
+
+fs.readFile('./texts/read.txt', "utf-8", (error, data)=>{
+        if(error){
+                throw Error("Error reading text");
+        }
+
+// writitng file
+        fs.writeFile('./texts/read2.txt', data, "utf-8", (err)=>{
+                if(err){
+                        throw Error("error writting data")
+                }
+        })
+})
+console.log("testing asynchronously");
+
+```
+
+
+-------------------------------------------------------------------------------------------------
+# Event Driven Architecture
+
+-- Event Emitter _`Emit Events`___> Event listener ______`Call`______> Callback
+
+```js
+const EventEmitter = require("events")
+
+const myEmitter = new EventEmitter()
+
+// listener
+
+myEmitter.on('birthday', ()=>{
+        console.log("Happy birthday to you");
+
+})
+myEmitter.on('birthday', (gift)=>{
+        console.log(` I will send a gift ${gift}`);
+
+})
+
+myEmitter.emit('birthday', "watch")
+
+
+```
+
+### stream and Buffer
+- It is used to process  a data `piece by piece` which is called buffer.
+- it is better in terms of user experience
+- Needs short memory storage as it do not complete whole process at once
+- needs low memory space
+data flow ---> piece| piece| Piece| ---> together --->loading -->buffer
+
+#### Different types of streams
+
+1. Readable Stream - a stream where we can read data (ex.http req, fs.readStream)
+2. writable stream - a stream where we can write data (ex. http response, fs, writeStream)
+3. Duplex stream - a stream for both write and read
+4. Transform stream - a stream where can we reshape data
+
+
+```js
+const http=require("http");
+const fs = require('fs');
+// creating a server using raw node.js
+
+const server=http.createServer()
+
+server.on('request', (req, res)=>{
+        if(req.url==='/read-file' && req.method==="GET");
+        const readableStream=fs.createReadStream(process.cwd() + '/texts/read.txt')
+        readableStream.on('data', (buffer)=>{
+                res.statusCode = 200;
+                res.write(buffer);
+        })
+
+        readableStream.on('end', ()=>{
+                res.statusCode = 200;
+                res.end("hello............")
+        })
+        readableStream.on('error', (error)=>{
+                console.log(error);
+                res.statusCode = 500;
+                res.end("hello............")
+        })
+        
+})
+
+server.listen(5000, ()=>{
+        console.log("server is running");
+})
+
+```
+
+
 
 
