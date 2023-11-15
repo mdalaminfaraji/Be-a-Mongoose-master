@@ -425,3 +425,37 @@
       },
    ]);
    ```
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+# Node js And Express js Master
+
+## what javascript is invented?
+
+        - Answer:
+                -- user can interactive browser using `javascript` access between `DOM` `CSS` .only run within browser give me interactive ui
+
+## Why Node.js is built?
+
+        - Answer:
+                -- we do not use `js ` within server side 
+
+## What is node.js?
+
+        - Answer: 
+                -- Node js is a runtime . Run code server side using chrome v8 engine v8 engine parse javascript code and run machine .
+
+### Node.js Modules
+
+        -Answer:
+                - Operating System Module (os)
+                - File System Module (fs)
+                - Path Module (path)
+                - HTTP Module (http)
+                - URL Module (url)
+                - Utilities Module(util)
