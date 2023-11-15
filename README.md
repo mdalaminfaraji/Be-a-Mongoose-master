@@ -432,26 +432,55 @@
 
 ## what javascript is invented?
 
-        ### Answer:
-                user can interactive browser using `javascript` access between `DOM` `CSS` .only run within browser give me interactive ui
+- Answer:
+        user can interactive browser using `javascript` access between `DOM` `CSS` .only run within browser give me interactive ui
 
 ## Why Node.js is built?
 
-        ### Answer:
-                 we do not use `js ` within server side
+ - Answer:
+        we do not use `js ` within server side
 
 ## What is node.js?
 
-       ### Answer:
-                 Node js is a runtime . Run code server side using chrome v8 engine v8 engine parse javascript code and run machine .
+- Answer:
+        Node js is a runtime . Run code server side using chrome v8 engine v8 engine parse javascript code and run machine .
 
 ### Node.js Modules
 
-        ### Answer:
+- Answer:
 
-                - Operating System Module (os)
-                - File System Module (fs)
-                - Path Module (path)
-                - HTTP Module (http)
-                - URL Module (url)
-                - Utilities Module(util)
+        -- Operating System Module (os)
+        -- File System Module (fs)
+        -- Path Module (path)
+        -- HTTP Module (http)
+        -- URL Module (url)
+        -- Utilities Module(util)
+ ### why node.js popular?
+
+ - We cna use `js` on server side
+ - Build higly scalable backend application
+ - It is single threaded , event driven and works non blocking I/O
+ - Perfect building data intensive, streaming application
+
+### cons of using node.js
+- Highly cpu intensive tasks
+
+- But you cna do using worker threads
+
+### Dependencies of Node js
+
+ - V8 Engine: Node js runtime is based on V8 Engine written in `c++ & js`. without V8 Node` js `would never understand javascript code.
+
+ - Libuv: Libuv is an open source library written on c++ which focuses on `asynchronous I/O` and gives node access to 
+ `Computer OS`, `File Systems`, `Networking`, etc.
+
+
+### Libuv implements 2 important Parts of Node JS
+- Event Loop: Executes callback functions, Network I/O. 
+- Thread Pool: CPU intensive Tasks, File Access, File Compression, Cryptography
+
+### What is a module
+A module is an isolated and resuable block of code that has its own scope
+
+
+
