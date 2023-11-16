@@ -657,4 +657,121 @@ server.listen(5000, ()=>{
 
 
 
+---------------------------------------------------------------------------------------------------------------
+# Express js start Time 6:38 pm 11/15/2023
+
+## install process command
+-  npm init -y 
+- yarn add express 
+- yarn add -D typescript 
+- tsc-init 
+- yarn add -D @types/node 
+- yarn add -D @types/express
+- yarn add -D nodemon
+- tsc -w
+
+
+#### package.json 
+ - start:dev: 'nodemon ./dist/server.ts'
+
+
+ ```js
+ import express, { Request, Response } from 'express';
+const app = express()
+// parsers
+app.use(express.json());
+// middleWare
+const logger=(req:Request, res:Response, next:NextFunction)=>{
+        console.log(req.url, req.method, req.hostname, req.query);
+        next();
+}
+app.get('/', (req:Request, res:Response) => {
+        console.log(req.query);//?email="ala@gmail.com"&name=alamin
+        console.log(req.body);
+        console.log(req.params);// /:userId/:id
+  res.send('Hello world !')
+})
+
+app.post('/', (req:Request, res:Response)=>{
+        console.log(req.body)
+        res.send("back response");
+})
+
+export default app;
+ 
+ ```
+
+ ## what is middleWare?
+ - middleware is function . middleware check authorization, and another validation, and recive req process some task then send the next() work. 
+
+ middleware ---> req, -->next ---- >Route Access
+
+
+# Make own Route in express js file
+
+```js
+
+const userRouter = express.Router();
+
+app.use("/", userRouter);
+userRouter.get("/api/v1/users/create-user", (req: Request, res: Response) => {
+  const user = req.body;
+  console.log(user);
+  res.json({
+    success: true,
+    message: "user is created successfully",
+    data: user,
+  });
+});
+
+const logger = (req: Request, res: Response, next: NextFunction) => {
+  console.log(req.url, req.method, req.hostname, req.query);
+  next();
+};
+app.get("/", logger, (req: Request, res: Response, next:NextFunction) => {
+
+  try {
+        // console.log(something);
+  } catch (error) {
+        next(error);
+  }
+});
+
+```
+
+
+
+
+
+
+ ## global error handler & route missing handler
+
+ ```js
+ 
+ 
+app.all("*", (req:Request, res:Response)=>{
+        res.status(400).json({
+                success:false,
+                message:"Route is not found"
+        })
+})
+// global error handler
+
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+  if(error){
+        res.status(400).json({
+                success:false,
+                message:"Something went wrong"
+        })
+  }
+});
+ ```
+
+
+
+
+
+
+
+
 
